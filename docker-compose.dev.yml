@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  clario-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    command: pnpm dev
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - 3000:3000
