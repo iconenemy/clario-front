@@ -1,5 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return <Button>Hello</Button>;
+import { auth } from "@utils/auth";
+import { ROUTE } from "@utils/routes";
+
+export default async function HomePage() {
+  const session = await auth();
+  if (session) redirect(ROUTE.CUSTOMERS);
+  else redirect(ROUTE.SIGN_IN);
 }
